@@ -26,7 +26,7 @@ if st.button("AIに質問する"):
     with st.spinner("AIからの応答を待っています..."):
         try:
             # --- API呼び出し ---
-            model = GenerativeModel(model_name="gemini-1.5-flash-preview-0514")
+            model = GenerativeModel(model_name="gemini-1.5-flash-001")
             response = model.generate_content("日本の首都はどこですか？")
             
             st.subheader("AIからの応答:")
