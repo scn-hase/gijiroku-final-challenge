@@ -84,7 +84,7 @@ if uploaded_file is not None:
     transcribed_text = None
     with st.spinner("ステップ3/5: AIが音声を文字に変換しています...（この処理は数分かかることがあります）"):
         # 使用するAIモデルを指定
-        model = GenerativeModel(model_name="gemini-1.5-pro-preview-0514") # 動作が確認できた安定版Proモデル
+        model = GenerativeModel(model_name="gemini-1.5-flash-002") # 動作が確認できた安定版Proモデル
         
         # GCS上の音声ファイルを指定
         audio_file = Part.from_uri(mime_type=uploaded_file.type, uri=gcs_uri)
