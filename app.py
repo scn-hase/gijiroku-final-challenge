@@ -83,14 +83,15 @@ if uploaded_file is not None:
     # --- 3. AIによる文字起こし ---
     transcribed_text = None
     with st.spinner("ステップ3/5: AIが音声を文字に変換しています...（この処理は数分かかることがあります）"):
-        # 使用するAIモデルを指定
-        model = GenerativeModel(model_name="gemini-1.5-flash-002") # 動作が確認できた安定版Proモデル
-        
-        # GCS上の音声ファイルを指定
-        audio_file = Part.from_uri(mime_type=uploaded_file.type, uri=gcs_uri)
-        
-        # AIへの指示（プロンプト）
-        prompt = """
+       
+     # 使用するAIモデルをシンプルに定義する
+     model = GenerativeModel("gemini-1.5-pro-preview-0514") # 動作実績のあるProモデル
+
+     # GCS上の音声ファイルを Part オブジェクトとして準備
+     audio_file_part = Part.from_uri(mime_type=uploaded_file.type, uri=gcs_uri)
+
+     # テキストプロンプトも、Part オブジェクトとして明示的に準備
+     prompt_text = """
         あなたは会議の内容を文字起こしするプロフェッショナルです。
 この音声ファイルの全ての音声を以下の情報と条件にしたがって、文字起こしして。
 
@@ -204,9 +205,11 @@ if uploaded_file is not None:
 ・「speaker1, 00:00:47,よろしくお願いいたします。」のように表記を統一する
 
         """
+        prompt_part = Part.from_text(prompt_text)
         
-        # AIにリクエストを送信
-        response = model.generate_content([audio_file, prompt])
+        # AIにリクエストを送信 (Partオブジェクトだけで構成されたリストを渡す)
+        response = model.generate_content([audio_file_part, prompt_part])
+        
         
         transcribed_text = response.text
         st.subheader("文字起こし結果")
