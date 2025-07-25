@@ -85,7 +85,7 @@ if uploaded_file is not None:
     with st.spinner("ステップ3/5: AIが音声を文字に変換しています...（この処理は数分かかることがあります）"):
        
      # 使用するAIモデルをシンプルに定義する
-     model = GenerativeModel("gemini-2.5-flash") # 動作実績のあるモデル
+     model = GenerativeModel("gemini-2.5-pro-preview-03-25") # 動作実績のあるモデル
 
      # GCS上の音声ファイルを Part オブジェクトとして準備
      audio_file_part = Part.from_uri(mime_type=uploaded_file.type, uri=gcs_uri)
