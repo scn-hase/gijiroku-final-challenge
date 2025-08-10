@@ -49,7 +49,7 @@ if uploaded_file is not None:
             
             # あなたの新しいプロジェクトIDと、AIを動かすリージョンを指定
             project_id = "final-minutes-app" # 👈 【重要】あなたの新しいGCPプロジェクトIDに書き換えてください
-            location = "asia-northeast1"           # 東京リージョン
+            location = "us-central1"           # Gemini-2.5-pro使用可のUSリージョン
             
             vertexai.init(project=project_id, location=location, credentials=creds)
 
@@ -59,7 +59,7 @@ if uploaded_file is not None:
             storage_client = storage.Client()
             
             project_id = "final-minutes-app" # 👈 【重要】あなたの新しいGCPプロジェクトIDに書き換えてください
-            location = "asia-northeast1"           # 東京リージョン
+            location = "us-central1"           # Gemini-2.5-pro使用可のUSリージョン
             
             vertexai.init(project=project_id, location=location)
 
@@ -85,7 +85,7 @@ if uploaded_file is not None:
     with st.spinner("ステップ3/5: AIが音声を文字に変換しています...（この処理は数分かかることがあります）"):
        
      # 使用するAIモデルをシンプルに定義する
-     model = GenerativeModel("gemini-1.5-pro-002") # 動作実績のあるモデル
+     model = GenerativeModel("gemini-2.5-pro") # 動作実績のあるモデル
 
      # GCS上の音声ファイルを Part オブジェクトとして準備
      audio_file_part = Part.from_uri(mime_type=uploaded_file.type, uri=gcs_uri)
