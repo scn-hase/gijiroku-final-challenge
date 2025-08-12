@@ -67,7 +67,7 @@ if uploaded_file is not None:
     gcs_uri = None
     with st.spinner("ステップ2/5: 音声ファイルを安全なクラウドにアップロードしています..."):
         # あなたの新しいGCSバケット名を指定
-        bucket_name = "gijiroku-final-bucket" # 👈 【重要】あなたの新しいGCSバケット名に書き換えてください
+        bucket_name = "scn-giziroku-us-central1" # 👈 【重要】あなたの新しいGCSバケット名に書き換えてください
         
         bucket = storage_client.bucket(bucket_name)
         timestamp = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
